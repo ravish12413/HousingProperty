@@ -32,19 +32,19 @@
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
     <style>
-        .h1-image {
-            width: 120px; /* Adjust width */
-            height: auto; /* Maintain aspect ratio */
-            margin-right: 10px; /* Space between image and text */
-            vertical-align: middle; /* Align image with text */
-        }
-        .h2-image {
-            width: 80px; /* Adjust width */
-            height: auto; /* Maintain aspect ratio */
-            margin-right: 10px; /* Space between image and text */
-            vertical-align: middle; /* Align image with text */
-        }
-        .whatsapp-float {
+       .h1-image {
+        width: 120px; /* Adjust width */
+        height: auto; /* Maintain aspect ratio */
+        margin-right: 10px; /* Space between image and text */
+        vertical-align: middle; /* Align image with text */
+    }
+    .h2-image {
+        width: 80px; /* Adjust width */
+        height: auto; /* Maintain aspect ratio */
+        margin-right: 10px; /* Space between image and text */
+        vertical-align: middle; /* Align image with text */
+    }
+    .whatsapp-float {
     position: fixed;
     bottom: 20px;
     right: 20px;
@@ -54,7 +54,7 @@
     justify-content: center;
     width: 60px;
     height: 60px;
-    background-color: #fbfcfb;
+    background-color: #f87706;
     border-radius: 20%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     animation: bounce 2s infinite; /* Apply bounce animation */
@@ -93,13 +93,243 @@
 /* Icon Animation */
 .nav-item.nav-link:hover i {
     transform: scale(1.5); /* Increased zoom effect for icon */
-    color: #ff5722; /* Optional: Change icon color */
+    color: #ed3a03; /* Optional: Change icon color */
+}
+@keyframes zoomInOut {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1); /* Zoom in */
+    }
+    100% {
+        transform: scale(1); /* Zoom out */
+    }
+}
+
+.zoom-animation {
+    animation: zoomInOut 2s infinite; /* Duration: 2 seconds, infinite loop */
+}
+/* Keyframes for orange flowing color animation */
+@keyframes orangeFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Styling for orange animated button */
+.orange-button {
+    margin: 20px; /* Adds spacing outside the button */
+    animation: orangeFlow 3s infinite; /* Flowing color animation */
+    background: linear-gradient(90deg, #ff8c00, #ff4500, #ff8c00); /* Orange gradient */
+    background-size: 200% 200%; /* For smooth flowing effect */
+    color: white; /* Text color */
+    border: none;
+    border-radius: 5px; /* Optional: rounded corners */
+    transition: transform 0.2s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+    text-decoration: none; /* Removes underline */
+    display: inline-block; /* Ensures proper spacing */
+}
+
+/* Hover effect for orange button */
+.orange-button:hover {
+    transform: scale(1.1); /* Slightly enlarges on hover */
+    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2); /* Adds a larger shadow */
+}
+/* Keyframes for orange flowing color animation */
+@keyframes orangeFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Styling for animated navbar text */
+.animated-nav-text {
+    font-size: 16px; /* Adjust size as needed */
+    font-weight: bold; /* Make text bold */
+    background: linear-gradient(90deg, #ff8c00, #ff4500, #ff8c00); /* Orange gradient */
+    background-size: 200% 200%; /* For smooth flowing effect */
+    -webkit-background-clip: text; /* Clips gradient to text */
+    -webkit-text-fill-color: transparent; /* Makes the text transparent for the gradient */
+    animation: orangeFlow 3s infinite; /* Continuous animation */
+    margin: 0 10px; /* Adds spacing between navbar items */
+    text-transform: uppercase; /* Optional: transforms text to uppercase */
+    text-decoration: none; /* Removes underline */
+    transition: transform 0.3s ease-in-out; /* Smooth hover effect */
+}
+
+/* Hover effect for navbar links */
+.animated-nav-text:hover {
+    transform: scale(1.1); /* Slightly enlarges on hover */
+    text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Adds subtle shadow */
+}
+/* Keyframes for flowing color animation */
+@keyframes flowingColor {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Styling for animated links */
+.animated-link {
+    font-weight: bold;
+    font-size: 16px;
+    background: linear-gradient(90deg, #ff8c00, #ff4500, #ff8c00); /* Flowing orange gradient */
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: flowingColor 3s infinite;
+    text-decoration: none;
+    transition: transform 0.2s ease-in-out, text-shadow 0.2s ease-in-out;
+}
+
+.animated-link:hover {
+    transform: scale(1.1);
+    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling for animated social media icons */
+.animated-icon i {
+    font-size: 20px;
+    background: linear-gradient(90deg, #ff8c00, #ff4500, #ff8c00); /* Flowing orange gradient */
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: flowingColor 3s infinite;
+    transition: transform 0.2s ease-in-out, text-shadow 0.2s ease-in-out;
+}
+
+.animated-icon i:hover {
+    transform: scale(1.2);
+    text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Keyframes for flowing color animation */
+@keyframes flowingColor {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Styling for animated icons */
+.animated-icon {
+    font-size: 20px; /* Icon size */
+    background: linear-gradient(90deg, #ff8c00, #ff4500, #ff8c00); /* Flowing orange gradient */
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: flowingColor 3s infinite; /* Animation for gradient */
+    transition: transform 0.2s ease-in-out;
+}
+
+.animated-icon:hover {
+    transform: scale(1.2); /* Enlarges slightly on hover */
+    text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Adds a glowing effect */
+}
+@keyframes colorFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .text-primary {
+            display: inline-block;
+            background: linear-gradient(90deg, rgb(244, 117, 6), rgb(255, 1, 1));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: colorFlow 3s ease-in-out infinite;
+        }
+        .rounded-corners {
+            border-radius: 20px; /* Adjust the value for more or less curvature */
+            border: 3px solid #ff5733;
+        }
+        @keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+.rounded{
+    border-radius: 20px;
+}
+/* Default state: White background for the service item */
+/* Default state: White background for the service item */
+.service-item {
+    background-color: white; /* White background by default */
+    border-radius: 10px; /* Adds rounded corners */
+    transition: all 0.3s ease; /* Smooth transition for all effects */
+    position: relative; /* Make it relative for centering during hover */
+    overflow: hidden; /* Prevent content from overflowing when scaled */
+}
+
+/* Hover state: Expand and center the item */
+.service-item:hover {
+    background-color: #ff6f00; /* Red-orange background on hover */
+    transform: scale(1.2); /* Expand the size */
+    z-index: 10; /* Bring the item to the front */
+    position: relative; /* Ensure the item stays in flow */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+}
+
+/* Icon color change and zoom effect on hover */
+.service-item:hover .service-icon .fa {
+    color: #ff3d00; /* Change icon color to a more intense red on hover */
+    transform: scale(1.5); /* Increase icon size */
+    transition: transform 0.3s ease, color 0.3s ease; /* Smooth transition for scaling and color change */
+}
+
+/* Click (active) state for the service item */
+.service-item:active {
+    background-color: #ff4500; /* Darker red-orange when clicked */
+    transform: scale(1.1); /* Slightly shrink the scale for feedback */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Reduce shadow intensity */
+}
+
+/* Default style for the social media buttons */
+.btn-social {
+    color: white; /* Default icon color */
+    border-color: white; /* Outline color */
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Hover effect for the social media buttons */
+.btn-social:hover {
+    background-color: red; /* Red background on hover */
+    border-color: red; /* Match the outline with the background */
+    transform: scale(1.1); /* Zoom effect */
+}
+
+/* Change icon color on hover */
+.btn-social:hover i {
+    color: rgb(255, 255, 255); /* Change icon color to yellow on hover */
+    transition: color 0.3s ease; /* Smooth transition for icon color */
 }
 </style>
 </head>
 
 <body>
-    <div class="container-xxl bg-white p-0">
+    <div class="container-xxx 1 bg-white p-0">
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
             <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
@@ -114,7 +344,7 @@
                 <div class="col-lg-3 bg-dark d-none d-lg-block">
                     <a href="index.html" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
                         <h1 class="m-0 text-primary">
-                            <img src="logo.jpg" alt="Logo" class="h1-image">
+                            <img src="logo.png" alt="Logo" class="h1-image">
                         </h1>
                     </a>
                 </div>
@@ -122,47 +352,47 @@
                     <div class="row gx-0 bg-white d-none d-lg-flex">
                         <div class="col-lg-7 px-5 text-start">
                             <div class="h-100 d-inline-flex align-items-center py-2 me-4">
-                                <i class="fa fa-envelope text-primary me-2"></i>
+                                <i class="fa fa-envelope animated-icon me-2"></i>
                                 <p class="mb-0">
-                                    <a href="mailto:karansharma5790@gmail.com">karansharma5790@gmail.com</a>
+                                    <a href="mailto:karansharma5790@gmail.com" class="animated-link">karansharma5790@gmail.com</a>
                                 </p>
                             </div>
                             <div class="h-100 d-inline-flex align-items-center py-2">
-                                <i class="fa fa-phone-alt text-primary me-2"></i>
+                                <i class="fa fa-phone-alt animated-icon me-2"></i>
                                 <p class="mb-0">
-                                    <a href="tel:+919718755694">+91 9718755694</a>
+                                    <a href="tel:+919718755694" class="animated-link">+91 9718755694</a>
 
                                 </p>
                             </div>
                         </div>
                         <div class="col-lg-5 px-5 text-end">
                             <div class="d-inline-flex align-items-center py-2">
-                                <a class="me-3" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="me-3" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="me-3" href=""><i class="fab fa-linkedin-in"></i></a>
-                                <a class="me-3" href=""><i class="fab fa-instagram"></i></a>
+                                <a class="me-3 animated-icon" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="me-3 animated-icon" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="me-3 animated-icon" href=""><i class="fab fa-linkedin-in"></i></a>
+                                <a class="me-3 animated-icon" href=""><i class="fab fa-instagram"></i></a>
                                 <!-- <a class="" href=""><i class="fab fa-youtube"></i></a> -->
                             </div>
                         </div>
                     </div>
                     <nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0">
                         <a href="index.html" class="navbar-brand d-block d-lg-none">
-                            <h1 class="m-0 text-primary text-uppercase"><img src="logo.jpg" alt="Logo" class="h2-image"></h1>
+                            <h1 class="m-0 text-primary text-uppercase"><img src="logo.png" alt="Logo" class="h2-image"></h1>
                         </a>
                         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div class="navbar-nav mr-auto py-0">
-                                <a href="index.html" class="nav-item nav-link">Home</a>
-                                <a href="about.html" class="nav-item nav-link active">About</a>
-                                <a href="service.html" class="nav-item nav-link">Services</a>
-                                <a href="property.html" class="nav-item nav-link">Property</a>
-                                <a href="booking.html" class="nav-item nav-link">Booking</a>
+                                <a href="index.html" class="nav-item nav-link animated-nav-text">Home</a>
+                                <a href="about.html" class="nav-item nav-link active animated-nav-text">About</a>
+                                <a href="service.html" class="nav-item nav-link animated-nav-text">Services</a>
+                                <a href="property.html" class="nav-item nav-link animated-nav-text">Property</a>
+                                <a href="booking.html" class="nav-item nav-link animated-nav-text ">Booking</a>
                                 
-                                <a href="contact.html" class="nav-item nav-link">Contact</a>
+                                <a href="contact.html" class="nav-item nav-link animated-nav-text">Contact</a>
                             </div>
-                            <a href="https://wa.me/919718755694" class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block">Contact Now<i class="fa fa-arrow-right ms-3"></i></a>
+                            <a href="https://wa.me/919718755694" class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block orange-button">Contact Now<i class="fa fa-arrow-right ms-3"></i></a>
                         </div>
                     </nav>
                 </div>
@@ -175,11 +405,11 @@
         <div class="container-fluid page-header mb-5 p-0" style="background-image: url(img/carousel-1.jpg);">
             <div class="container-fluid page-header-inner py-5">
                 <div class="container text-center pb-5">
-                    <h1 class="display-3 text-white mb-3 animated slideInDown">About Us</h1>
+                    <h1 class="display-3 text-white mb-3 animated slideInDown zoom-animation">About Us</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center text-uppercase">
-                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                            <li class="breadcrumb-item"><a href="service.html">Services</a></li>
+                            <li class="breadcrumb-item animated-nav-text"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item animated-nav-text"><a href="service.html">Services</a></li>
                             <li class="breadcrumb-item text-white active" aria-current="page">About</li>
                         </ol>
                     </nav>
@@ -241,11 +471,11 @@
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-6">
                         <h6 class="section-title text-start text-primary text-uppercase">About Us</h6>
-                        <h1 class="mb-4">Welcome to <span class="text-primary text-uppercase">Housing Helpers Property</span></h1>
+                        <h1 class="mb-4 zoom-animation">Welcome to <span class="text-primary text-uppercase">Housing Helpers Property</span></h1>
                         <p class="mb-4">Housing helpers Property offer comprehensive solutions for buying, selling, renting, and managing real estate. We provide expert advice, property marketing, and investment guidance to help clients achieve their goals efficiently and effectively.</p>
                         <div class="row g-3 pb-4">
                             <div class="col-sm-4 wow fadeIn" data-wow-delay="0.1s">
-                                <div class="border rounded p-1">
+                                <div class="border rounded p">
                                     <div class="border rounded text-center p-4">
                                         <i class="fa fa-hotel fa-2x text-primary mb-2"></i>
                                         <h2 class="mb-1" data-toggle="counter-up">678</h2>
@@ -254,7 +484,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-4 wow fadeIn" data-wow-delay="0.3s">
-                                <div class="border rounded p-1">
+                                <div class="border rounded p">
                                     <div class="border rounded text-center p-4">
                                         <i class="fa fa-users-cog fa-2x text-primary mb-2"></i>
                                         <h2 class="mb-1" data-toggle="counter-up">267</h2>
@@ -263,7 +493,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-4 wow fadeIn" data-wow-delay="0.5s">
-                                <div class="border rounded p-1">
+                                <div class="border rounded p">
                                     <div class="border rounded text-center p-4">
                                         <i class="fa fa-users fa-2x text-primary mb-2"></i>
                                         <h2 class="mb-1" data-toggle="counter-up">3567</h2>
@@ -272,21 +502,21 @@
                                 </div>
                             </div>
                         </div>
-                        <a class="btn btn-primary py-3 px-5 mt-2" href="service.html">Explore More</a>
+                        <a class="btn btn-primary py-3 px-5 mt-2 orange-button" href="service.html">Explore More</a>
                     </div>
                     <div class="col-lg-6">
                         <div class="row g-3">
                             <div class="col-6 text-end">
-                                <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.1s" src="img/about-1.jpg" style="margin-top: 25%;">
+                                <img class="img-fluid rounded w-75 wow zoomIn rounded-corners" data-wow-delay="0.1s" src="img/about-1.jpg" style="margin-top: 25%;">
                             </div>
                             <div class="col-6 text-start">
-                                <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.3s" src="img/about-2.jpg">
+                                <img class="img-fluid rounded w-100 wow zoomIn rounded-corners" data-wow-delay="0.3s" src="img/about-2.jpg">
                             </div>
                             <div class="col-6 text-end">
-                                <img class="img-fluid rounded w-50 wow zoomIn" data-wow-delay="0.5s" src="img/about-3.jpg">
+                                <img class="img-fluid rounded w-50 wow zoomIn rounded-corners" data-wow-delay="0.5s" src="img/about-3.jpg">
                             </div>
                             <div class="col-6 text-start">
-                                <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.7s" src="img/about-4.jpg">
+                                <img class="img-fluid rounded w-75 wow zoomIn rounded-corners" data-wow-delay="0.7s" src="img/about-4.jpg">
                             </div>
                         </div>
                     </div>
@@ -445,7 +675,7 @@
                 <div class="copyright">
                     <div class="row">
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="index.html">Housing Helpers Property</a>, All Right Reserved. 
+                            &copy; <a class="border-bottom" href="index.html">Housing Helpers Property</a>, All Right Reserved. &nbsp;&nbsp; Designed by <a class="border-bottom" href="https://www.marsmetatech.com">MarsMeta Tech</a>
 							
                         </div>
                         <div class="col-md-6 text-center text-md-end">

@@ -274,28 +274,56 @@
     border-radius: 20px;
 }
 /* Default state: White background for the service item */
+/* Default state: White background for the service item */
 .service-item {
     background-color: white; /* White background by default */
-    border-radius: 10px; /* Optional: Adds rounded corners */
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for background color and scaling effect */
+    border-radius: 10px; /* Adds rounded corners */
+    transition: all 0.3s ease; /* Smooth transition for all effects */
+    position: relative; /* Make it relative for centering during hover */
+    overflow: hidden; /* Prevent content from overflowing when scaled */
 }
 
-/* Hover state: Red-orange flow effect */
+/* Hover state: Expand and center the item */
 .service-item:hover {
     background-color: #ff6f00; /* Red-orange background on hover */
-    transform: scale(1.05); /* Slightly scale up the item for emphasis */
+    transform: scale(1.2); /* Expand the size */
+    z-index: 10; /* Bring the item to the front */
+    position: relative; /* Ensure the item stays in flow */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
 }
 
-/* Icon color change on hover */
+/* Icon color change and zoom effect on hover */
 .service-item:hover .service-icon .fa {
     color: #ff3d00; /* Change icon color to a more intense red on hover */
-    transition: color 0.3s ease;
+    transform: scale(1.5); /* Increase icon size */
+    transition: transform 0.3s ease, color 0.3s ease; /* Smooth transition for scaling and color change */
 }
 
 /* Click (active) state for the service item */
 .service-item:active {
     background-color: #ff4500; /* Darker red-orange when clicked */
-    transform: scale(1); /* Reset the scale when clicked */
+    transform: scale(1.1); /* Slightly shrink the scale for feedback */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Reduce shadow intensity */
+}
+
+/* Default style for the social media buttons */
+.btn-social {
+    color: white; /* Default icon color */
+    border-color: white; /* Outline color */
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Hover effect for the social media buttons */
+.btn-social:hover {
+    background-color: red; /* Red background on hover */
+    border-color: red; /* Match the outline with the background */
+    transform: scale(1.1); /* Zoom effect */
+}
+
+/* Change icon color on hover */
+.btn-social:hover i {
+    color: rgb(255, 255, 255); /* Change icon color to yellow on hover */
+    transition: color 0.3s ease; /* Smooth transition for icon color */
 }
 
 </style>
@@ -350,7 +378,7 @@
                     
                     <nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0">
                         <a href="index.html" class="navbar-brand d-block d-lg-none">
-                            <h1 class="m-0 text-primary text-uppercase"><img src="logo.jpg" alt="Logo" class="h2-image"></h1>
+                            <h1 class="m-0 text-primary text-uppercase"><img src="logo.png" alt="Logo" class="h2-image"></h1>
                         </a>
                         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                             <span class="navbar-toggler-icon"></span>
@@ -772,7 +800,7 @@
                                 <small>Bussiness Executive</small>
                             </div>
                         </div>
-                        <i class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"></i>
+                        <!-- <i class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"></i> -->
                     </div>
                     <div class="testimonial-item position-relative bg-white rounded overflow-hidden">
                         <p>"I had been struggling to sell my property for months, but Housing Helpers Property marketed it so well that it was sold quickly and at a great price. Highly recommend their professional and friendly team!"</p>
@@ -783,7 +811,7 @@
                                 <small>Homeowner</small>
                             </div>
                         </div>
-                        <i class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"></i>
+                        <!-- <i class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"></i> -->
                     </div>
                     <div class="testimonial-item position-relative bg-white rounded overflow-hidden">
                         <p>"Their property management services are top-notch. They handle everything from tenant management to maintenance, saving me so much time and stress. A truly reliable team!"</p>
@@ -794,7 +822,7 @@
                                 <small>Investment</small>
                             </div>
                         </div>
-                        <i class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"></i>
+                        <!-- <i class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"></i> -->
                     </div>
                 </div>
             </div>
@@ -970,7 +998,7 @@
             <div class="container pb-5">
                 <div class="row g-5">
                     <div class="col-md-6 col-lg-4">
-                        <div class="bg-primary rounded p-4">
+                        <div class="bg-primary rounded p-4 ">
                             <a href="#"><h1 class="text-white text-uppercase mb-3">Housing Helpers Property</h1></a>
                             <p class="text-white mb-0">
                                 contact us on
@@ -1017,7 +1045,7 @@
                 <div class="copyright">
                     <div class="row">
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="index.html">Housing Helpers Property</a>, All Right Reserved. Designed by <a href="https://www.marsmetatech.com">MarsMeta Tech</a>
+                            &copy; <a class="border-bottom" href="index.html">Housing Helpers Property</a>, All Right Reserved.&nbsp;&nbsp; Designed by <a class="border-bottom" href="https://www.marsmetatech.com">MarsMeta Tech</a>
 							
                         </div>
                         <div class="col-md-6 text-center text-md-end">
