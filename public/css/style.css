@@ -1,8 +1,10 @@
 /********** Template CSS **********/
+
 :root {
     --primary: #FEA116;
     --light: #F1F8FF;
     --dark: #0F172B;
+   
 }
 
 .fw-medium {
@@ -386,7 +388,7 @@
     align-items: center;
     justify-content: center;
     color: #FFFFFF;
-    background: var(--primary);
+    background: orangered;
     border-radius: 2px;
     font-size: 18px;
     transition: .5s;
