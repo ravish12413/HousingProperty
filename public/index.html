@@ -457,10 +457,10 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form id="enquiryform">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                                <input type="text" class="form-control" id="Name" placeholder="Enter your name" required>
                             </div>
                             <div class="mb-3">
                                 <label for="mobile" class="form-label">Mobile Number</label>
@@ -469,7 +469,9 @@
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email Address</label>
                                 <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+        
                             </div>
+                            <input type="hidden" id="timestamp" name="timestamp">
                             <button type="submit" class="btn btn-primary w-100" style="border-radius: 5px;">Submit</button>
                         </form>
                     </div>
@@ -593,6 +595,7 @@
                     <h6 class="section-title text-center text-primary text-uppercase">Our Property</h6>
                     <h1 class="mb-5 zoom-animation">Explore Our <span class="text-primary text-uppercase">Property</span></h1>
                 </div>
+                <!-- property card -->
                 <div class="row g-4">
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="room-item shadow rounded overflow-hidden">
@@ -625,6 +628,8 @@
                             </div>
                         </div>
                     </div>
+
+
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                         <div class="room-item shadow rounded overflow-hidden">
                             <div class="position-relative">
@@ -1083,6 +1088,56 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    
+    
+    <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js"></script>
+    <script type="module" src="js/firebase.js"></script>
+
+    <script type="module">
+        import {  addEnquiry } from './js/firebase.js';
+
+        const setTimestamp = () => {
+            const timestampInput = document.getElementById('timestamp');
+            if (timestampInput) {  // Check if the element exists
+                const currentTimestamp = new Date().toISOString();  // Get current timestamp
+                timestampInput.value = currentTimestamp;  // Set the value of the hidden input
+            } else {
+                console.error('Timestamp input element not found!');
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+    setTimestamp();  // Call the setTimestamp function when the DOM is fully loaded
+    
+    document.getElementById('enquiryForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('Name').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('mobile').value;
+        const timestamp = document.getElementById('timestamp').value;
+        
+        const enquiry = {
+            Name: name, 
+            email: email, 
+            contact: phone,
+            timestamp: timestamp,
+        };
+
+        try {
+            // Call Firebase function to save enquiry to Firestore
+            const enquiryId = await addEnquiry(enquiry);
+            console.log('Enquiry added with ID:', enquiryId);
+            alert('Enquiry added successfully!');
+            document.getElementById('enquiryForm').reset();  // Reset the form after success
+        } catch (error) {
+            console.error('Error adding Enquiry:', error);
+            alert('Something went wrong');
+        }
+        });
+    });
+
+    </script>
 </body>
 
 </html>

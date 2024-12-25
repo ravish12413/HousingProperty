@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+
+  <!-- Font Awesome for Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+  <!-- Link to CSS -->
+  <link rel="stylesheet" href="navstyle.css">
+</head>
+<body>
+
+  <!-- Horizontal Navbar (Top) -->
+  <nav class="top-navbar">
+    <div class="top-navbar-container">
+      <div class="navbar-brand">
+        <h2>Admin-Insights</h2>
+      </div>
+      <ul class="navbar-links">
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">Settings</a></li>
+      </ul>
+      <div class="navbar-profile">
+        <div class="profile-icon">
+          <img src="https://via.placeholder.com/40" alt="User">
+        </div>
+        <div class="logout">
+          <button onclick="logout()">Logout</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Left Sidebar -->
+  <div class="sidebar">
+    <ul class="sidebar-menu">
+      <li><a href="Dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+      <li><a href="Properties.html"><i class="fas fa-building"></i> Properties</a></li>
+      <li><a href="Enquiry.html"><i class="fas fa-comment-dots"></i> Enquiries</a></li>
+      <li><a href="addproperty.html"><i class="fas fa-users"></i> Add Property</a></li>
+      <li><a href="#" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+      
+    </ul>
+    <div class="provider">
+      <div class="provider-image">
+          <img src="images/logo.png" alt="">
+      </div>
+  </div>
+  </div>
+
+  <!-- Main Content Area -->
+  <div class="main-content">
+    <div class="content-header">
+      
+      <!-- Latest Enquiries Section -->
+      <div class="Enquiry-box">
+        <h2>Latest Enquiries</h2>
+        <table id="enquiry-table">
+          <!-- Data will be populated dynamically -->
+        </table>
+        <button><a href="Enquiry.html">More</a></button>
+      </div>
+
+      <!-- Total Property Count -->
+      <div class="property-count">
+        <h2>Total Properties</h2>
+        <div id="property-count">0</div>
+      </div>
+
+    </div>
+
+    <!-- Latest Properties Section -->
+    <div class="property-box">
+      <h2>Latest Properties</h2>
+      <table id="property-table">
+        <!-- Data will be populated dynamically -->
+      </table>
+      <button><a href="Properties.html">More</a></button>
+    </div>
+  </div>
+
+  <!-- Logout JavaScript -->
+  <script>
+    function logout() {
+      alert('Logging out...');
+      window.location.href = 'Signin.html'; // Redirect to sign-in page
+      // Add actual logout functionality here (redirect or clear session)
+    }
+  </script>
+
+  <!-- Firebase and Data Fetching Script -->
+  <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js"></script>
+
+  <script type="module">
+    import {  getEnquiries, getProperties } from './js/firebase.js';
+    import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js';
+    import { logout } from './js/firebase.js';
+
+    const auth = getAuth();
+
+    // Check if user is authenticated
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        // If the user is not authenticated, redirect to sign-in page
+        window.location.href = 'Signin.html';
+      }
+    });
+    // Fetch and display latest enquiries (3 latest)
+    const loadLatestEnquiries = async () => {
+      const enquiries = await getEnquiries();
+      const sortedEnquiries = enquiries.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)); // Sort by timestamp in descending order
+
+      const enquiryTable = document.getElementById('enquiry-table');
+      const latestEnquiries = sortedEnquiries.slice(0, 3); // Get the top 3 enquiries
+
+      latestEnquiries.forEach((enquiry, index) => {
+        const row = enquiryTable.insertRow(index);
+        row.innerHTML = `
+          <td>${enquiry.Name}</td>
+          <td>${enquiry.email}</td>
+          <td>${enquiry.contact}</td>
+        `;
+      });
+    };
+
+    // Fetch and display latest properties (3 latest)
+    const loadLatestProperties = async () => {
+      const properties = await getProperties();
+      const sortedProperties = properties.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)); // Sort by timestamp in descending order
+
+      const propertyTable = document.getElementById('property-table');
+      const latestProperties = sortedProperties.slice(0, 3); // Get the top 3 properties
+
+      latestProperties.forEach((property, index) => {
+        const row = propertyTable.insertRow(index);
+        row.innerHTML = `
+          <td>${property.Name}</td>
+          <td>${property.pid}</td>
+          <td>${property.location}</td>
+        `;
+      });
+    };
+
+    // Fetch and display the total number of properties
+    const loadTotalPropertiesCount = async () => {
+      const properties = await getProperties();
+      document.getElementById('property-count').innerText = properties.length;
+    };
+
+    // Call the functions to load the data
+   window.onload = () => {
+      loadLatestEnquiries();
+      loadLatestProperties();
+      loadTotalPropertiesCount();
+    };
+  </script>
+
+</body>
+</html>

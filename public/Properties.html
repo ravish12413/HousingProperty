@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Properties</title>
+    <!-- Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="propertystyle.css">
+</head>
+<body>
+    <!-- horizontal bar -->
+    <nav class="top-navbar">
+        <div class="top-navbar-container">
+            <div class="navbar-brand">
+                <h2>Admin-Insights</h2>
+            </div>
+            <ul class="navbar-links">
+                <li><a href="#"><b>Property-Control</b></a></li>
+                <li><a href="#"></a></li>
+                
+            </ul>
+            <div class="navbar-profile">
+                <div class="profile-icon">
+                    <img src="https://via.placeholder.com/40" alt="User">
+                </div>
+            </div>
+            <div class="logout">
+                <button onclick="logout()">Logout</button>
+              </div>
+        </div>
+    </nav>
+
+    <!-- Left Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2></h2>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="Dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="Properties.html"><i class="fas fa-building"></i> Properties</a></li>
+            <li><a href="Enquiry.html"><i class="fas fa-comment-dots"></i> Enquiries</a></li>
+            <li><a href="addproperty.html"><i class="fas fa-users"></i> Add Property</a></li>
+            <li><a href="#" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+        <div class="provider">
+            <div class="provider-image">
+                <img src="images/logo.png" alt="">
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <div class="content-header">
+            <table id="properties-table">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Property Name</th>
+                        <th>Property id</th>
+                        <th>Location</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="properties-list">
+                    <!-- Properties will be listed here dynamically -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Firebase and Custom Script -->
+    <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js"></script>
+    <script type="module">
+        import {  getProperties, deleteProperty } from './js/firebase.js'; // Assuming firebase.js is in the same directory
+        import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js';
+        
+        import { logout } from './js/firebase.js';
+
+            const auth = getAuth();
+
+            // Check if user is authenticated
+            onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                // If the user is not authenticated, redirect to sign-in page
+                window.location.href = 'Signin.html';
+            }
+            }); 
+
+            document.addEventListener('DOMContentLoaded', async () => {
+            const properties = await getProperties();
+            displayProperties(properties);
+        });
+
+        const displayProperties = (properties) => {
+            const propertiesListContainer = document.getElementById('properties-list');
+            propertiesListContainer.innerHTML = ""; // Clear existing rows
+
+            properties.forEach((property, index) => {
+                const propertyRow = document.createElement('tr');
+
+                const serialNo = document.createElement('td');
+                serialNo.textContent = index + 1;
+                
+                const propertyName = document.createElement('td');
+                propertyName.textContent = property.Name;
+                
+                const propertyId = document.createElement('td');
+                propertyId.textContent = property.pid;
+                
+                const propertyLocation = document.createElement('td');
+                propertyLocation.textContent = property.location;
+                
+                const actionCell = document.createElement('td');
+                const editButton = document.createElement('button');
+                editButton.className = 'action-btn';
+                editButton.textContent = 'Edit';
+                editButton.onclick = () => editProperty(property.pid); // Implement edit logic if needed
+                
+                const deleteButton = document.createElement('button');
+                deleteButton.className = 'action-btn delete';
+                deleteButton.textContent = 'Delete';
+                deleteButton.onclick = () => deletePropertyHandler(property.pid);
+                
+                actionCell.appendChild(editButton);
+                actionCell.appendChild(deleteButton);
+
+                propertyRow.appendChild(serialNo);
+                propertyRow.appendChild(propertyName);
+                propertyRow.appendChild(propertyId);
+                propertyRow.appendChild(propertyLocation);
+                propertyRow.appendChild(actionCell);
+
+                propertiesListContainer.appendChild(propertyRow);
+            });
+        };
+
+        // Delete Property Handler
+        const deletePropertyHandler = async (propertyId) => {
+            try {
+                await deleteProperty(propertyId);
+                alert('Property deleted successfully');
+                location.reload(); // Reload to reflect the changes
+            } catch (error) {
+                console.error('Error deleting property:', error);
+                alert('Error deleting property');
+            }
+        };
+
+        // Optional: Implement edit functionality if required
+        const editProperty = (propertyId) => {
+            alert(`Edit property with ID: ${propertyId}`);
+            // Implement your edit logic here
+        };
+    </script>
+</body>
+</html>

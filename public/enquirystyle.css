@@ -1,0 +1,211 @@
+
+  /* Basic Reset */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Body and Layout */
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column; /* Allow stacking of top navbar and content */
+    min-height: 100vh;
+  }
+  /* Left Sidebar */
+  .sidebar {
+    background-color: #2c3e50;
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 60px; /* Adjust to make space for the top navbar */
+    left: 0;
+    padding: 20px;
+    color: #ecf0f1;
+  }
+  
+  .sidebar-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .sidebar-header h2 {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .sidebar-menu {
+    list-style: none;
+  }
+  
+  .sidebar-menu li {
+    margin: 20px 0;
+  }
+  
+  .sidebar-menu li a {
+    text-decoration: none;
+    color: #ecf0f1;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sidebar-menu li a:hover {
+    background-color: #3498db;
+  }
+  
+  .sidebar-menu li a .fas {
+    font-size: 20px;
+  }
+  .main-content {
+    margin-left: auto;
+    margin-top: auto; /* Space for top navbar */
+    padding: 20px;
+    width: 100%;
+    background-color: #f4f7fa;
+    height: 100%;
+  }
+  .provider{
+    margin-bottom: 15px;
+    margin-top: 350px;
+    margin-left: 15px;
+  }
+  .provider-image img{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+  }
+  /* Top Horizontal Navbar */
+  .top-navbar {
+    background-color: #2c3e50;
+    color: #fff;
+    padding: 10px 20px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  }
+  
+  .top-navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar-brand h2 {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .navbar-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .navbar-links li a {
+    text-decoration: none;
+    color: #ecf0f1;
+    font-size: 18px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  .navbar-links li a:hover {
+    color: #3498db;
+  }
+  
+  .navbar-profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .main-content {
+    margin-left: auto;
+    margin-top: auto; /* Space for top navbar */
+    padding: 20px;
+    width: 100%;
+    background-color: #f4f7fa;
+    height: 100%;
+  }
+/* Layout container */
+.main-content {
+    display: flex;
+    justify-content: flex-start; /* Align content to the left */
+    align-items: flex-start; /* Align items to the top */
+    min-height: 100vh; /* Full height of the viewport */
+    padding: 20px;
+    width: calc(100% - 260px); /* Subtract left navbar width */
+}
+
+/* Content wrapper for the table */
+.content-header {
+    width: 100%; /* Ensure it takes the full remaining width */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+    margin-top: 100px;
+}
+
+/* Table styles */
+table {
+    width: 100%; /* Take up the full width of the content area */
+    border-collapse: collapse;
+    border-radius: 8px;
+    table-layout: fixed; /* Prevent the table from overflowing */
+    overflow: hidden; /* Prevent scrolling */
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    font-size: 16px;
+    border-bottom: 1px solid #ddd;
+    word-wrap: break-word; /* Ensures text doesn't overflow the cell */
+    border-right: 1px solid #fad7a0; /* Thin right border for hairline effect */
+
+}
+
+th {
+    background-color: #0056b3;
+    color: #fff;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+td, th {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+/* Button styling */
+.action-btn {
+    padding: 6px 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.action-btn:hover {
+    background-color: #218838;
+}
+
+.action-btn.delete {
+    background-color: #dc3545;
+}
+
+.action-btn.delete:hover {
+    background-color: #c82333;
+}

@@ -491,33 +491,35 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="wow fadeInUp" data-wow-delay="0.2s">
-                            <form>
+                            <form id="enquiryForm">
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="name" placeholder="Your Name">
+                                            <input type="text" class="form-control" id="Name" name="Name" placeholder="Your Name">
                                             <label for="name">Your Name</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <input type="email" class="form-control" id="email" placeholder="Your Email">
+                                            <input type="email" class="form-control" id="email" name="email" placeholder="Your Email">
                                             <label for="email">Your Email</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <input type="tel" class="form-control" id="mobile" placeholder="Your Mobile Number" pattern="[0-9]{10}" required>
+                                            <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Your Mobile Number" pattern="[0-9]{10}" required>
                                             <label for="mobile">Your Mobile Number</label>
                                         </div>
                                     </div>
                                     
                                     <div class="col-12">
                                         <div class="form-floating">
-                                            <textarea class="form-control" placeholder="Special Request" id="message" style="height: 100px"></textarea>
+                                            <textarea class="form-control" placeholder="Special Request" id="message" name="message" style="height: 100px"></textarea>
                                             <label for="message">Special Request</label>
                                         </div>
                                     </div>
+                                    <input type="hidden" id="timestamp" name="timestamp">
+
                                     <div class="col-12">
                                         <button class="btn btn-primary w-100 py-3 orange-button" type="submit">Book Now</button>
                                     </div>
@@ -642,6 +644,55 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js"></script>
+    <script type="module" src="js/firebase.js"></script>
+
+    <script type="module">
+        import {  addEnquiry } from './js/firebase.js';
+
+        const setTimestamp = () => {
+            const timestampInput = document.getElementById('timestamp');
+            if (timestampInput) {  // Check if the element exists
+                const currentTimestamp = new Date().toISOString();  // Get current timestamp
+                timestampInput.value = currentTimestamp;  // Set the value of the hidden input
+            } else {
+                console.error('Timestamp input element not found!');
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+    setTimestamp();  // Call the setTimestamp function when the DOM is fully loaded
+    
+    document.getElementById('enquiryForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('Name').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('mobile').value;
+        const timestamp = document.getElementById('timestamp').value;
+        
+        const enquiry = {
+            Name: name, 
+            email: email, 
+            contact: phone,
+            timestamp: timestamp,
+        };
+
+        try {
+            // Call Firebase function to save enquiry to Firestore
+            const enquiryId = await addEnquiry(enquiry);
+            console.log('Enquiry added with ID:', enquiryId);
+            alert('Enquiry added successfully!');
+            document.getElementById('enquiryForm').reset();  // Reset the form after success
+        } catch (error) {
+            console.error('Error adding Enquiry:', error);
+            alert('Something went wrong');
+        }
+        });
+    });
+
+    </script>
 </body>
 
 </html>

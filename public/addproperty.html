@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Property</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 50px auto;
+            margin-top: 100px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input[type="text"], input[type="number"], textarea, input[type="file"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        input[type="text"]:focus, input[type="number"]:focus, textarea:focus, input[type="file"]:focus {
+            border-color: #0056b3;
+            outline: none;
+        }
+
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        button {
+            background-color: #0056b3;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+        input[type="file"] {
+            margin-bottom: 16px;
+        }
+
+
+        button:hover {
+            background-color: #004099;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        #propertyimageurl {
+            display: none;
+        }
+        /* Left Sidebar */
+  .sidebar {
+    background-color: #2c3e50;
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 60px; /* Adjust to make space for the top navbar */
+    left: 0;
+    padding: 20px;
+    color: #ecf0f1;
+  }
+  
+  .sidebar-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .sidebar-header h2 {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .sidebar-menu {
+    list-style: none;
+  }
+  
+  .sidebar-menu li {
+    margin: 20px 0;
+  }
+  
+  .sidebar-menu li a {
+    text-decoration: none;
+    color: #ecf0f1;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sidebar-menu li a:hover {
+    background-color: #3498db;
+  }
+  
+  .sidebar-menu li a .fas {
+    font-size: 20px;
+  }
+
+  .provider{
+    margin-bottom: 15px;
+    margin-top: 350px;
+    margin-left: 15px;
+  }
+  .provider-image img{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+  }
+  .top-navbar {
+    background-color: #2c3e50;
+    color: #fff;
+    padding: 10px 20px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  }
+  
+  .top-navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar-brand h2 {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .navbar-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .navbar-links li a {
+    text-decoration: none;
+    color: #ecf0f1;
+    font-size: 18px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  .navbar-links li a:hover {
+    color: #3498db;
+  }
+  
+  .navbar-profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .profile-icon img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+  }
+  
+  .logout button {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .logout button:hover {
+    background-color: #c0392b;
+  }
+</style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2></h2>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="Dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="Properties.html"><i class="fas fa-building"></i> Properties</a></li>
+            <li><a href="Enquiry.html"><i class="fas fa-comment-dots"></i> Enquiries</a></li>
+            <li><a href="addproperty.html"><i class="fas fa-users"></i> Add Property</a></li>
+            
+        </ul>
+        <div class="provider">
+            <div class="provider-image">
+                <img src="images/logo.png" alt="">
+            </div>
+        </div>
+    </div>
+
+    <nav class="top-navbar">
+        <div class="top-navbar-container">
+          <div class="navbar-brand">
+            <h2>Admin-Insights</h2>
+          </div>
+          <ul class="navbar-links">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Settings</a></li>
+          </ul>
+          <div class="navbar-profile">
+            <div class="profile-icon">
+              <img src="https://via.placeholder.com/40" alt="User">
+            </div>
+            <div class="logout">
+              <button onclick="logout()">Logout</button>
+            </div>
+          </div>
+        </div>
+    </nav>
+
+
+
+    <form id="add-property-form"> <!-- Add the correct ID here -->
+        <div class="form-container">
+            <label for="propertyname">Property Name</label>
+            <input type="text" name="propertyname" id="propertyname" required>
+
+            <label for="propertyid">Property ID</label>
+            <input type="text" name="propertyid" id="propertyid" required>
+
+            <label for="propertylocation">Property Location</label>
+            <input type="text" name="propertylocation" id="propertylocation" required>
+
+            <label for="propertyprice">Property Price</label>
+            <input type="text" name="propertyprice" id="propertyprice" required>
+
+            <label for="propertydescription">Property Description</label>
+            <textarea name="propertydescription" id="propertydescription" required></textarea>
+
+            <label for="propertyimage">Property Image (Upload Image)</label>
+            <input type="file" id="propertyimage" name="propertyimage" accept="image/*" required>
+
+            <!-- Hidden Image URL Input -->
+            <input type="text" id="propertyimageurl" name="propertyimageurl">
+
+            <input type="hidden" id="timestamp" name="timestamp">
+
+            <button type="submit">Add Property</button>
+        </div>
+    </form>
+
+    <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-storage.js"></script>
+    
+    <script type="module" src="js/firebase.js"></script>
+
+    <script type="module">
+
+       
+
+        import {  addProperty } from './js/firebase.js'; // Import the addProperty function
+        import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js';
+        import { logout } from './js/firebase.js';
+
+            const auth = getAuth();
+
+            // Check if user is authenticated
+            onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                // If the user is not authenticated, redirect to sign-in page
+                window.location.href = 'signin.html';
+            }
+            });
+
+        const setTimestamp = () => {
+            const timestampInput = document.getElementById('timestamp');
+            const currentTimestamp = new Date().toISOString();  // Get current timestamp
+            timestampInput.value = currentTimestamp;  // Set the value of the hidden input
+        };
+
+        window.onload = setTimestamp;
+
+        document.getElementById('add-property-form').addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent default form submission
+
+            // Get form data
+            const propertyName = document.getElementById('propertyname').value;
+            const propertyLocation = document.getElementById('propertylocation').value;
+            const propertyId = document.getElementById('propertyid').value;
+            const propertyPrice = document.getElementById('propertyprice').value;
+            const propertyDescription = document.getElementById('propertydescription').value;
+            const propertyImage = document.getElementById('propertyimage').files[0];
+            const timestamp = document.getElementById('timestamp').value;
+
+              // Cloudinary Image Upload
+            let imageUrl = '';
+            if (propertyImage) {
+                const formData = new FormData();
+                formData.append('file', propertyImage);
+                formData.append('upload_preset', 'image-upload');  // Replace with your Cloudinary preset
+                formData.append('cloud_name', 'dico3j30a');        // Replace with your Cloudinary cloud name
+
+                try {
+                    const res = await fetch('https://api.cloudinary.com/v1_1/dico3j30a/image/upload', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    const data = await res.json();
+                    imageUrl = data.secure_url;  // Cloudinary image URL
+                    document.getElementById('propertyimageurl').value = imageUrl;  // Set image URL in hidden input
+                } catch (error) {
+                    console.error('Error uploading image:', error);
+                    alert('Error uploading image!');
+                    return;  // Stop execution if image upload fails
+                }
+            }
+
+            // Create the property data object
+            const propertyData = {
+                Name: propertyName,
+                location: propertyLocation,
+                pid: propertyId,
+                price: propertyPrice,
+                Desc: propertyDescription,
+                ilink: imageUrl, // Store the image URL
+                timestamp: timestamp,
+            };
+
+            try {
+                // Call Firebase function to save property to Firestore
+                const propertyId = await addProperty(propertyData);
+                console.log('Property added with ID:', propertyId);
+                alert('Property added successfully!');
+                window.location.href = 'Properties.html'; // Redirect after success
+            } catch (error) {
+                console.error('Error adding property:', error);
+                alert('Error adding property');
+            }
+        });
+    </script>
+</body>
+</html>

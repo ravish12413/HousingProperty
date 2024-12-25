@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enquiries</title>
+    <!-- Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="propertystyle.css">
+</head>
+<body>
+    <!-- horizontal bar -->
+    <nav class="top-navbar">
+        <div class="top-navbar-container">
+            <div class="navbar-brand">
+                <h2>Admin-Insights</h2>
+            </div>
+            <ul class="navbar-links">
+                <li><a href="#"><b>All Enquiry</b></a></li>
+                <li><a href="#"></a></li>
+            </ul>
+            <div class="navbar-profile">
+                <div class="profile-icon">
+                    <img src="https://via.placeholder.com/40" alt="User">
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Left Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2></h2>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="Dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="Properties.html"><i class="fas fa-building"></i> Properties</a></li>
+            <li><a href="Enquiry.html"><i class="fas fa-comment-dots"></i> Enquiries</a></li>
+            <li><a href="addproperty.html"><i class="fas fa-users"></i> Add Property</a></li>
+            
+        </ul>
+        <div class="provider">
+            <div class="provider-image">
+                <img src="images/logo.png" alt="">
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <div class="content-header">
+            <table id="enquiry-table">
+                <thead>
+                    <tr>
+                        <th>S No.</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Contact</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="enquiry-list">
+                    <!-- Enquiries will be listed here dynamically -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Firebase and Custom Script -->
+    <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js"></script>
+
+    <script type="module">
+        import {getEnquiries, deleteEnquiry } from './js/firebase.js'; // Assuming firebase.js is in the same directory
+
+        import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js';
+        
+        import { logout } from './js/firebase.js';
+
+        const auth = getAuth();
+
+        // Check if user is authenticated
+        onAuthStateChanged(auth, (user) => {
+        if (!user) {
+            // If the user is not authenticated, redirect to sign-in page
+            window.location.href = 'Signin.html';
+        }
+        });
+        document.addEventListener('DOMContentLoaded', async () => {
+            const enquiries = await getEnquiries(); // Fetching data from Firestore
+            displayEnquiries(enquiries);
+        });
+
+        const displayEnquiries = (enquiries) => {
+            const enquiryListContainer = document.getElementById('enquiry-list');
+            enquiryListContainer.innerHTML = ""; // Clear existing rows
+
+            enquiries.forEach((enquiry, index) => {
+                const enquiryRow = document.createElement('tr');
+                
+                const serialNo = document.createElement('td');
+                serialNo.textContent = index + 1;
+                
+                const name = document.createElement('td');
+                name.textContent = enquiry.Name;
+                
+                const email = document.createElement('td');
+                email.textContent = enquiry.email;
+                
+                const contact = document.createElement('td');
+                contact.textContent = enquiry.contact;
+                
+                const actionCell = document.createElement('td');
+                const deleteButton = document.createElement('button');
+                deleteButton.className = 'action-btn delete';
+                deleteButton.textContent = 'Delete';
+                deleteButton.onclick = () => deleteEnquiryHandler(enquiry.id);
+                
+                actionCell.appendChild(deleteButton);
+
+                enquiryRow.appendChild(serialNo);
+                enquiryRow.appendChild(name);
+                enquiryRow.appendChild(email);
+                enquiryRow.appendChild(contact);
+                enquiryRow.appendChild(actionCell);
+
+                enquiryListContainer.appendChild(enquiryRow);
+            });
+        };
+
+        // Delete enquiry handler
+        const deleteEnquiryHandler = async (enquiryId) => {
+            try {
+                await deleteEnquiry(enquiryId);
+                alert('Enquiry deleted successfully');
+                location.reload(); // Reload to reflect the changes
+            } catch (error) {
+                console.error('Error deleting enquiry:', error);
+                alert('Error deleting enquiry');
+            }
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>Login Admin</title>
+      <link rel="stylesheet" href="signinstyle.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+      <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js"></script>
+      <script type="module" src="js/firebase-config.js"></script> <!-- Firebase config import -->
+   </head>
+   <body>
+      <div class="login-form">
+         <div class="text">
+            ADMIN
+         </div>
+         <form id="signin-form">
+            <div class="field">
+               <div class="fas fa-envelope"></div>
+               <input type="email" id="email" placeholder="Email" required>
+            </div>
+            <div class="field">
+               <div class="fas fa-lock"></div>
+               <input type="password" id="password" placeholder="Password" required>
+            </div>
+            <button type="submit">LOGIN</button>
+            <div class="link">
+               <!-- Not a member? <a href="signup.html">Signup now</a> -->
+            </div>
+         </form>
+      </div>
+
+      <script type="module">
+         // Importing Firebase Authentication methods and the login function
+         import { login } from './js/firebase.js'; 
+
+         // Sign-in logic
+         document.getElementById('signin-form').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+               // Use the imported login function from firebase.js
+               const user = await login(email, password);
+               alert('Login successful!');
+               window.location.href = 'Dashboard.html'; // Redirect to the dashboard after successful login
+            } catch (error) {
+               alert('Error: ' + error.message); // Handle errors gracefully
+            }
+         });
+      </script>
+   </body>
+</html>
