@@ -54,7 +54,7 @@
     justify-content: center;
     width: 60px;
     height: 60px;
-    background-color: #f87706;
+    background-color: #ffffff;
     border-radius: 20%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     animation: bounce 2s infinite; /* Apply bounce animation */
@@ -124,7 +124,7 @@
 .orange-button {
     margin: 20px; /* Adds spacing outside the button */
     animation: orangeFlow 3s infinite; /* Flowing color animation */
-    background: linear-gradient(90deg, #ff8c00, #ff4500, #ff8c00); /* Orange gradient */
+    background: linear-gradient(90deg, #fea116, #fea116, #fea116); /* Orange gradient */
     background-size: 200% 200%; /* For smooth flowing effect */
     color: white; /* Text color */
     border: none;
@@ -154,7 +154,7 @@
 .animated-nav-text {
     font-size: 16px; /* Adjust size as needed */
     font-weight: bold; /* Make text bold */
-    background: linear-gradient(90deg, #ff8c00, #ff4500, #ff8c00); /* Orange gradient */
+    background: linear-gradient(90deg, #fea116, #fea116, #fea116); /* Orange gradient */
     background-size: 200% 200%; /* For smooth flowing effect */
     -webkit-background-clip: text; /* Clips gradient to text */
     -webkit-text-fill-color: transparent; /* Makes the text transparent for the gradient */
@@ -184,7 +184,7 @@
 .animated-link {
     font-weight: bold;
     font-size: 16px;
-    background: linear-gradient(90deg, #ff8c00, #ff4500, #ff8c00); /* Flowing orange gradient */
+    background: linear-gradient(90deg, #fea116, #fea116, #fea116); /* Flowing orange gradient */
     background-size: 200% 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -201,7 +201,7 @@
 /* Styling for animated social media icons */
 .animated-icon i {
     font-size: 20px;
-    background: linear-gradient(90deg, #ff8c00, #ff4500, #ff8c00); /* Flowing orange gradient */
+    background: linear-gradient(90deg, #fea116, #fea116, #fea116); /* Flowing orange gradient */
     background-size: 200% 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -227,7 +227,7 @@
 /* Styling for animated icons */
 .animated-icon {
     font-size: 20px; /* Icon size */
-    background: linear-gradient(90deg, #ff8c00, #ff4500, #ff8c00); /* Flowing orange gradient */
+   /* background: linear-gradient(90deg, #ff8c00, #ff4500, #ff8c00);*/
     background-size: 200% 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -248,17 +248,18 @@
             }
         }
 
-        .text-primary {
+        /* .text-primary {
             display: inline-block;
-            background: linear-gradient(90deg, rgb(244, 117, 6), rgb(255, 1, 1));
+            background: linear-gradient(90deg, #ffa201,#fea116);
             background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: colorFlow 3s ease-in-out infinite;
-        }
+        } */
+        
         .rounded-corners {
             border-radius: 20px; /* Adjust the value for more or less curvature */
-            border: 3px solid #ff5733;
+            border: 3px solid #fea116;
         }
         @keyframes fadeIn {
     from {
@@ -275,36 +276,7 @@
 }
 /* Default state: White background for the service item */
 /* Default state: White background for the service item */
-.service-item {
-    background-color: white; /* White background by default */
-    border-radius: 10px; /* Adds rounded corners */
-    transition: all 0.3s ease; /* Smooth transition for all effects */
-    position: relative; /* Make it relative for centering during hover */
-    overflow: hidden; /* Prevent content from overflowing when scaled */
-}
 
-/* Hover state: Expand and center the item */
-.service-item:hover {
-    background-color: #ff6f00; /* Red-orange background on hover */
-    transform: scale(1.2); /* Expand the size */
-    z-index: 10; /* Bring the item to the front */
-    position: relative; /* Ensure the item stays in flow */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
-}
-
-/* Icon color change and zoom effect on hover */
-.service-item:hover .service-icon .fa {
-    color: #ff3d00; /* Change icon color to a more intense red on hover */
-    transform: scale(1.5); /* Increase icon size */
-    transition: transform 0.3s ease, color 0.3s ease; /* Smooth transition for scaling and color change */
-}
-
-/* Click (active) state for the service item */
-.service-item:active {
-    background-color: #ff4500; /* Darker red-orange when clicked */
-    transform: scale(1.1); /* Slightly shrink the scale for feedback */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Reduce shadow intensity */
-}
 
 /* Default style for the social media buttons */
 .btn-social {
@@ -315,8 +287,8 @@
 
 /* Hover effect for the social media buttons */
 .btn-social:hover {
-    background-color: red; /* Red background on hover */
-    border-color: red; /* Match the outline with the background */
+    background-color:#fea116; /* Red background on hover */
+    border-color: #fea116; /* Match the outline with the background */
     transform: scale(1.1); /* Zoom effect */
 }
 
@@ -325,6 +297,7 @@
     color: rgb(255, 255, 255); /* Change icon color to yellow on hover */
     transition: color 0.3s ease; /* Smooth transition for icon color */
 }
+
 </style>
 </head>
 
@@ -352,13 +325,13 @@
                     <div class="row gx-0 bg-white d-none d-lg-flex">
                         <div class="col-lg-7 px-5 text-start">
                             <div class="h-100 d-inline-flex align-items-center py-2 me-4">
-                                <i class="fa fa-envelope animated-icon me-2"></i>
+                                <i class="fa fa-envelope text-primary me-2"></i>
                                 <p class="mb-0">
                                     <a href="mailto:karansharma5790@gmail.com" class="animated-link">karansharma5790@gmail.com</a>
                                 </p>
                             </div>
                             <div class="h-100 d-inline-flex align-items-center py-2">
-                                <i class="fa fa-phone-alt animated-icon me-2"></i>
+                                <i class="fa fa-phone-alt text-primary me-2"></i>
                                 <p class="mb-0">
                                     <a href="tel:+919718755694" class="animated-link">+91 9718755694</a>
                                 </p>
@@ -632,7 +605,7 @@
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <h6 class="section-title text-start text-primary text-uppercase mb-4">Contact</h6>
-                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>SF-144,Gaur City Centre,Near Chat Murti,Greater Noida West-201318, Uttar pradesh</p>
+                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>SF-144,Gaur City Centre,Near Char Murti,Greater Noida West-201318, Uttar pradesh</p>
                         <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+91 9718755694</p>
                         <p class="mb-2"><i class="fa fa-envelope me-3"></i>karansharma5790@gmail.com</p>
                         <div class="d-flex pt-2">
