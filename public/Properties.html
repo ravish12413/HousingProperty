@@ -45,7 +45,7 @@
         </ul>
         <div class="provider">
             <div class="provider-image">
-                <img src="images/logo.png" alt="">
+                <img src="img/logo.png" alt="">
             </div>
         </div>
     </div>
@@ -72,6 +72,7 @@
 
     <!-- Firebase and Custom Script -->
     <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js"></script>
+
     <script type="module">
         import {  getProperties, deleteProperty } from './js/firebase.js'; // Assuming firebase.js is in the same directory
         import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js';
@@ -112,18 +113,12 @@
                 const propertyLocation = document.createElement('td');
                 propertyLocation.textContent = property.location;
                 
-                const actionCell = document.createElement('td');
-                const editButton = document.createElement('button');
-                editButton.className = 'action-btn';
-                editButton.textContent = 'Edit';
-                editButton.onclick = () => editProperty(property.pid); // Implement edit logic if needed
-                
+                const actionCell = document.createElement('td'); // Implement edit logic if needed
                 const deleteButton = document.createElement('button');
                 deleteButton.className = 'action-btn delete';
                 deleteButton.textContent = 'Delete';
-                deleteButton.onclick = () => deletePropertyHandler(property.pid);
-                
-                actionCell.appendChild(editButton);
+                deleteButton.onclick = () => deletePropertyHandler(property.id);
+               
                 actionCell.appendChild(deleteButton);
 
                 propertyRow.appendChild(serialNo);
@@ -134,8 +129,8 @@
 
                 propertiesListContainer.appendChild(propertyRow);
             });
+        
         };
-
         // Delete Property Handler
         const deletePropertyHandler = async (propertyId) => {
             try {
@@ -143,16 +138,13 @@
                 alert('Property deleted successfully');
                 location.reload(); // Reload to reflect the changes
             } catch (error) {
-                console.error('Error deleting property:', error);
-                alert('Error deleting property');
+                console.error('Error deleting Property:', error);
+                alert('Error deleting Property');
             }
         };
+        
 
-        // Optional: Implement edit functionality if required
-        const editProperty = (propertyId) => {
-            alert(`Edit property with ID: ${propertyId}`);
-            // Implement your edit logic here
-        };
+       
     </script>
 </body>
 </html>

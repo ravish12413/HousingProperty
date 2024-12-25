@@ -222,7 +222,7 @@
         </ul>
         <div class="provider">
             <div class="provider-image">
-                <img src="images/logo.png" alt="">
+                <img src="img/logo.png" alt="">
             </div>
         </div>
     </div>
@@ -255,7 +255,11 @@
             <input type="text" name="propertyname" id="propertyname" required>
 
             <label for="propertyid">Property ID</label>
-            <input type="text" name="propertyid" id="propertyid" required>
+            <input type="text" name="propertyid" id="propertyid" placeholder="(Best) for home page" required>
+
+            
+            <label for="propertycity">Property City</label>
+            <input type="text" name="propertycity" id="propertycity" required>
 
             <label for="propertylocation">Property Location</label>
             <input type="text" name="propertylocation" id="propertylocation" required>
@@ -317,6 +321,7 @@
             // Get form data
             const propertyName = document.getElementById('propertyname').value;
             const propertyLocation = document.getElementById('propertylocation').value;
+            const propertyCity = document.getElementById('propertycity').value;
             const propertyId = document.getElementById('propertyid').value;
             const propertyPrice = document.getElementById('propertyprice').value;
             const propertyDescription = document.getElementById('propertydescription').value;
@@ -350,6 +355,7 @@
             const propertyData = {
                 Name: propertyName,
                 location: propertyLocation,
+                city: propertyCity,
                 pid: propertyId,
                 price: propertyPrice,
                 Desc: propertyDescription,

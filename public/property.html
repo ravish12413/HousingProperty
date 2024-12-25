@@ -483,68 +483,33 @@
         <!-- Booking End -->
 
 
-        <!-- Room Start -->
+        <!-- property Start -->
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                     <h6 class="section-title text-center text-primary text-uppercase">Our Property</h6>
                     <h1 class="mb-5 zoom-animation">Explore Our <span class="text-primary text-uppercase">Property</span></h1>
                 </div>
-                <div class="row g-4">
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="room-item shadow rounded overflow-hidden">
-                            <div class="position-relative">
-                                <img class="img-fluid" src="img/12.jpg" alt="">
-                                <small class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">
-                                    ₹ 1Cr - 1.5Cr</small>
-                            </div>
-                            <div class="p-4 mt-2">
-                                <div class="d-flex justify-content-between mb-3">
-                                    <h5 class="mb-0">2 BHK Flat</h5>
-                                    <div class="ps-2">
-                                        <small class="fa fa-star text-primary"></small>
-                                        <small class="fa fa-star text-primary"></small>
-                                        <small class="fa fa-star text-primary"></small>
-                                        <small class="fa fa-star text-primary"></small>
-                                        <small class="fa fa-star text-primary"></small>
-                                    </div>
-                                </div>
-                                <div class="d-flex mb-3">
-                                    <small class="border-end me-3 pe-3">
-                                        <i class="fa fa-map-marker-alt text-primary me-2"></i>Delhi
-                                    </small>
-                                    <small class="border-end me-3 pe-3"><i class="fa fa-bed text-primary me-2"></i>2 Bed</small>
-                                  
-                                </div>
-                                <p class="text-body mb-3"></p>
-                                <div class="d-flex justify-content-between">
-                                    <button class="btn btn-sm btn-primary rounded py-2 px-4 orange-button view-detail-btn">View Detail</button>
-                                    <a class="btn btn-sm btn-dark rounded py-2 px-4 orange-button" href="https://wa.me/919718755694">Book Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="row g-4" id="property-container">
+                    <!-- generate dynamic content -->
+               </div>
                     
                     <!-- Popup Modal -->
-                    <div id="popup-modal" class="popup-modal">
+                    <div id="popup-modal" class="popup-modal" style="display: none;"> <!-- Hidden by default -->
                         <div class="popup-content">
-                            <span class="close-btn">&times;</span>
-                            <h5>2 BHK Flat</h5>
-                            <p>Price: ₹ 1Cr - 1.5Cr</p>
-                            <p>Details: A flat with two bedrooms, a living room, and a kitchen.</p>
-                            <p>Features:</p>
-                            <ul>
-                                <li>2 Bed</li>
-                                <li>2 Bath</li>
-                            </ul>
-                            <p>Address:</p>
-                            <p>Delhi</p>
-                            <img src="img/12.jpg" alt="Property Image" class="img-fluid">
+                          <span class="close-btn">&times;</span>
+                          <h5 id="popup-property-name">Property Name</h5>
+                          <p id="popup-price">Price: ₹</p>
+                          <p id="popup-description">Description</p>
+                          <p>Features:</p>
+                          <ul id="popup-features">
+                            <!-- Features will be dynamically added here -->
+                          </ul>
+                          <p id="popup-address">Address:</p>
+                          <img id="popup-image" src="" alt="Property Image" class="img-fluid">
                         </div>
-                    </div>
-                    
-                  
-                </div>
+                      </div>                
+                
             </div>
         </div>
                 
@@ -698,31 +663,100 @@
     <script src="lib/tempusdominus/js/moment.min.js"></script>
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-    <script>// Get elements
-        const modal = document.getElementById('popup-modal');
-        const openModalBtns = document.querySelectorAll('.view-detail-btn');
-        const closeBtn = document.querySelector('.close-btn');
-        
-        // Show the popup
-        openModalBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                modal.style.display = 'block';
+
+    <script type="module">
+        // Import necessary functions from Firebase
+        import { getAllProperties, getPropertyById } from './js/firebase.js'; // Make sure these functions are correctly imported
+    
+        // Wait for the DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', async () => {
+            const properties = await getAllProperties(); // Fetch all properties from the database
+            displayProperties(properties); // Display properties on the page
+        });
+    
+        // Function to display properties on the page
+        const displayProperties = (properties) => {
+            const propertyContainer = document.getElementById('property-container');
+            propertyContainer.innerHTML = ''; // Clear any existing properties
+    
+            properties.forEach(property => {
+                const propertyCard = `
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="room-item shadow rounded overflow-hidden" id="property-${property.pid}">
+                            <div class="position-relative">
+                                <img class="img-fluid" src="${property.ilink}" alt="${property.Name}">
+                                <small class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">
+                                    ₹ ${property.price}</small>
+                            </div>
+                            <div class="p-4 mt-2">
+                                <div class="d-flex justify-content-between mb-3">
+                                    <h5 class="mb-0">${property.Name}</h5>
+                                </div>
+                                <div class="d-flex mb-3">
+                                    <small class="border-end me-3 pe-3">
+                                        <i class="fa fa-map-marker-alt text-primary me-2"></i>${property.city}
+                                    </small>
+                                    <small class="border-end me-3 pe-3">
+                                        <i class="fa fa-bed text-primary me-2"></i>
+                                    </small>
+                                </div>
+                                <p class="text-body mb-3">${property.Desc}</p>
+                                <div class="d-flex justify-content-between">
+                                    <button class="btn btn-sm btn-primary rounded py-2 px-4 orange-button view-detail-btn" onclick="viewPropertyDetail('${property.pid}')">View Detail</button>
+                                    <a class="btn btn-sm btn-dark rounded py-2 px-4 orange-button" href="https://wa.me/919718755694">Book Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                propertyContainer.innerHTML += propertyCard;
             });
+        };
+    
+        // Function to show property details in the popup modal
+        const viewPropertyDetail = async (propertyId) => {
+            const property = await getPropertyById(propertyId); // Fetch the full property details by ID
+    
+            if (property) {
+                // Update modal with property details
+                document.getElementById('popup-property-name').textContent = property.Name;
+                document.getElementById('popup-price').textContent = `Price: ₹ ${property.price}`;
+                document.getElementById('popup-description').textContent = `Description: ${property.Desc}`;
+                
+                // Display property features (bedrooms, bathrooms, etc.)
+                const featuresList = document.getElementById('popup-features');
+                featuresList.innerHTML = '';
+                if (property.features) {
+                    property.features.forEach(feature => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = feature;
+                        featuresList.appendChild(listItem);
+                    });
+                }
+    
+                document.getElementById('popup-address').textContent = `Address: ${property.city}`;
+                document.getElementById('popup-image').src = property.ilink;
+    
+                // Show the modal
+                const modal = document.getElementById('popup-modal');
+                modal.style.display = 'block';
+            }
+        };
+    
+        // Close the modal when the close button is clicked
+        document.querySelector('.close-btn').addEventListener('click', () => {
+            document.getElementById('popup-modal').style.display = 'none';
         });
-        
-        // Close the popup
-        closeBtn.addEventListener('click', () => {
-            modal.style.display = 'none';
-        });
-        
-        // Close the popup when clicking outside the content
+    
+        // Close the modal if clicked outside of the popup content
         window.addEventListener('click', (event) => {
+            const modal = document.getElementById('popup-modal');
             if (event.target === modal) {
                 modal.style.display = 'none';
             }
         });
-        </script>
-
+    </script>
+    
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 </body>

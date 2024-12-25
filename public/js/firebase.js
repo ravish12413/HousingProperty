@@ -134,3 +134,42 @@ export const signup = async (email, password) => {
       throw error; // Re-throw error so it can be caught in the calling function
     }
   };
+
+  // Function to get all properties from Firestore
+export const getAllProperties = async () => {
+
+  const propertiesCollection = collection(db, "Property");
+  const querySnapshot = await getDocs(propertiesCollection);
+  const properties = [];
+  querySnapshot.forEach((doc) => {
+    properties.push({ id: doc.id, ...doc.data() });
+  });
+  return properties;
+};
+
+// Function to get properties with pid = "best"
+export const getBestProperties = async () => {
+  const propertiesCollection = collection(db, "Property");
+  const querySnapshot = await getDocs(propertiesCollection);
+  const bestProperties = [];
+  querySnapshot.forEach((doc) => {
+    const property = doc.data();
+    if (property.pid === "Best") {
+      bestProperties.push({ id: doc.id, ...property });
+    }
+  });
+  return bestProperties;
+};
+
+// Function to get a property by its ID
+export const getPropertyById = async (id) => {
+  const docRef = doc(db, "Property", id);
+  const docSnap = await getDoc(docRef);
+  
+  if (docSnap.exists()) {
+    return { id: docSnap.id, ...docSnap.data() };
+  } else {
+    console.error("No such document!");
+    return null;
+  }
+};
