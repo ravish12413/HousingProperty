@@ -1,4 +1,14 @@
 // Import required Firebase modules from Firebase SDK v11.1.0
+const firebaseConfig = {
+  apiKey: "AIzaSyBZ-ncf_8tIETzDYjZS4_gRWrOHFvHvJuw",
+  authDomain: "housing-c48e1.firebaseapp.com",
+  projectId: "housing-c48e1",
+  storageBucket: "housing-c48e1.firebasestorage.app",
+  messagingSenderId: "242188841775",
+  appId: "1:242188841775:web:e033e52e22bf6cd6d327da",
+  databaseURL: "https://housing-c48e1-default-rtdb.firebaseio.com"
+};
+
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js';
 import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js';
 import { getAuth, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js';
@@ -13,15 +23,7 @@ import { getAuth, signInWithEmailAndPassword, signOut, createUserWithEmailAndPas
 //   appId: 'YOUR_APP_ID',
 // };
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBZ-ncf_8tIETzDYjZS4_gRWrOHFvHvJuw",
-  authDomain: "housing-c48e1.firebaseapp.com",
-  projectId: "housing-c48e1",
-  storageBucket: "housing-c48e1.firebasestorage.app",
-  messagingSenderId: "242188841775",
-  appId: "1:242188841775:web:e033e52e22bf6cd6d327da",
-  databaseURL: "https://housing-c48e1-default-rtdb.firebaseio.com"
-};
+
 
 
 // Initialize Firebase app
