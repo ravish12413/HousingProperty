@@ -297,7 +297,66 @@
     color: rgb(255, 255, 255); /* Change icon color to yellow on hover */
     transition: color 0.3s ease; /* Smooth transition for icon color */
 }
+.filter-container{
+    padding: 20px;
+    background-color: #fea116;
+    position: relative;
+}
+.filter-form{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 80%;
+}
+.filter-form label{
+    font-size: 14px;
+    color: white;
+}
+.filter-form select, .filter-form input{
+    padding:8px;
+    border-radius: 4px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    width: calc(100%/3-20px);
+}
+.fab{
+    position: relative;
+    bottom: 20px;
 
+    left: 100px;
+    width: 56px;
+    height: 56px;
+    top: 54%;
+    transform: translateY(-50%);
+    background-color: #fea116;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+.fab:hover{
+    background-color: #f9a825;
+}
+.fab i{
+    font-size: 20px;
+}
+
+@media(max-width: 768px){
+    .filter-form{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .filter-form select, .filter-form input{
+        width: 100%;
+    }
+}
 </style>
 </head>
 
@@ -396,7 +455,11 @@
                                 <!-- <button type="button" class="btn btn-light py-md-3 px-md-5 animated slideInRight orange-button" data-bs-toggle="modal" data-bs-target="#appointmentModal">
                                     Book Appointment
                                 </button> -->
-                                <a href="booking.html" class="btn btn-light py-md-3 px-md-5 me-3 animated slideInRight orange-button">Book Appointment</a>
+                                <a href="booking.html" 
+                                    class="btn btn-light py-md-3 px-md-5 me-3 animated slideInRight orange-button">
+                                    Book Appointment
+                                </a>
+                                
                             </div>
                         </div>
                     </div>
@@ -507,6 +570,38 @@
 
 
         <!-- About Start -->
+        <!-- <div class="filter-container">
+            <form id="filterForm" class="filter-form">
+                <label for ="city">city: </label>
+
+                <select  id="city">
+                    <option value="all">All</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="greater noida">Greater Noida</option>
+                    <option value="Noida">Noida</option>
+                    <option value="Ghaziabad">Ghaziabad</option>
+                    <option value="NCR">NCR</option>
+                </select>
+
+                <label for="bhk">BHK:</label>
+                <select  id="bhk">
+                    <option value="">All</option>
+                    <option value="1">1 BHK</option>
+                    <option value="2">2 BHK</option>
+                    <option value="3">3 BHK</option>
+                    <option value="4">4 BHK</option>
+                </select>
+
+                <label for="minPrice">Min Price:</label>
+                <input type="number"  id="minPrice" placeholder="input 85 for 85lac">
+                <label for="maxPrice">Max Price</label>
+                <input type="number"  id="maxPrice" placeholder="input 8 for 8cr">
+                <button type="button" onclick="applyFilters()" class="fab">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+            
+        </div> -->
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="row g-5 align-items-center">
@@ -993,10 +1088,8 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
     
-    
-    <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js"></script>
     <script type="module" src="js/firebase.js"></script>
+   
 
     <script type="module">
         // Firebase configuration and setup
